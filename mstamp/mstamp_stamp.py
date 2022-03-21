@@ -81,7 +81,10 @@ def mstamp(seq, sub_len, iter=None, return_dimension=False):
     dist_profile = np.empty((n_dim, sub_num))
     que_sig = np.empty(n_dim)
     tic = time.time()
-    for i in range(iter):
+    n_iter = np.arange(iter)
+    np.random.shuffle(n_iter)
+
+    for i in n_iter:
         cur_prog = (i + 1) / sub_num
         time_left = ((time.time() - tic) / (i + 1)) * (sub_num - i - 1)
         #print('\rProgress [{0:<50s}] {1:5.1f}% {2:8.1f} sec'
