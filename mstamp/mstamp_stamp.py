@@ -11,7 +11,7 @@ import numpy as np
 _EPS = 1e-14
 
 
-def mstamp(seq, sub_len, iter=None, return_dimension=False):
+def mstamp(seq, sub_len, iter=None, random=False, return_dimension=False):
     """ multidimensional matrix profile with mSTAMP (stamp based)
 
     Parameters
@@ -82,7 +82,8 @@ def mstamp(seq, sub_len, iter=None, return_dimension=False):
     que_sig = np.empty(n_dim)
     tic = time.time()
     n_iter = np.arange(iter)
-    np.random.shuffle(n_iter)
+    if random:
+        np.random.shuffle(n_iter)
 
     for i in n_iter:
         cur_prog = (i + 1) / sub_num
