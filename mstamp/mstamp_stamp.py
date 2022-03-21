@@ -11,7 +11,7 @@ import numpy as np
 _EPS = 1e-14
 
 
-def mstamp(seq, sub_len, return_dimension=False):
+def mstamp(seq, sub_len, iter=None, return_dimension=False):
     """ multidimensional matrix profile with mSTAMP (stamp based)
 
     Parameters
@@ -51,10 +51,13 @@ def mstamp(seq, sub_len, return_dimension=False):
 
     seq_len = seq.shape[1]
     sub_num = seq.shape[1] - sub_len + 1
+    if iter is None:
+        iter = sub_num
+    
     n_dim = seq.shape[0]
-    print(seq_len)
-    print(sub_num)
-    print(type(sub_num))
+    #print(seq_len)
+    #print(sub_num)
+    #print(type(sub_num))
     skip_loc = np.zeros(sub_num, dtype=bool)
     for i in range(sub_num):
         if not np.all(np.isfinite(seq[:, i:i + sub_len])):
@@ -78,12 +81,12 @@ def mstamp(seq, sub_len, return_dimension=False):
     dist_profile = np.empty((n_dim, sub_num))
     que_sig = np.empty(n_dim)
     tic = time.time()
-    for i in range(sub_num):
+    for i in range(iter):
         cur_prog = (i + 1) / sub_num
         time_left = ((time.time() - tic) / (i + 1)) * (sub_num - i - 1)
-        print('\rProgress [{0:<50s}] {1:5.1f}% {2:8.1f} sec'
-              .format('#' * int(cur_prog * 50),
-                      cur_prog * 100, time_left), end="")
+        #print('\rProgress [{0:<50s}] {1:5.1f}% {2:8.1f} sec'
+        #      .format('#' * int(cur_prog * 50),
+        #              cur_prog * 100, time_left), end="")
         for j in range(n_dim):
             que = seq[j, i:i + sub_len]
             dist_profile[j, :], que_sig[j] = _mass(
