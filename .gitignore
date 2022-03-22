@@ -1,4 +1,8 @@
 *env_mstamp
 *__pycache__
+mstamp/.DS_Store
 *.ipynb_checkpoints
 .pyc
+*_copie.py
+
+*_copie.ipynb

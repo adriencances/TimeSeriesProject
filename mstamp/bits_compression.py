@@ -5,7 +5,7 @@ def Dnorm(T):
 
     Parameters:
         T: np.array(m, dim_selected)
-    
+
     Return:
         normalized sequence
     """
@@ -37,7 +37,7 @@ def RDL(t_c, t_h):
     Parameters:
         t_c: np.array(m, dim_selected)
         t_h: np.array(m, dim_selected)
-    
+
     Return:
         RDL score between t_c and t_h
     """
@@ -45,7 +45,8 @@ def RDL(t_c, t_h):
     gamma = np.sum(diff != 0)
     m, dim = t_c.shape
     b = int(t_c.nbytes/(m*dim))
-    return gamma*(np.log2(m) + b)/dim
+    return gamma*(np.log2(m) + b)
+    # return gamma*(np.log2(m) + b)/dim
 
 def bit(multivariate_time_series, compressible_set_index, hypothesis_index, sub_len, unexplored_index=None):
     """Compute the bits required to store compressible_set_index according to hypothesis_index
@@ -56,7 +57,7 @@ def bit(multivariate_time_series, compressible_set_index, hypothesis_index, sub_
         hypothesis_index: list of index
         sub_len: int
         unexplored_index: list of index
-    
+
     Return:
         number of bits necessary for compression using the article of Yeh,C.-C.M.,VanHerle,H.,andKeogh
     """
@@ -83,7 +84,7 @@ def bit(multivariate_time_series, compressible_set_index, hypothesis_index, sub_
     return res
 
 def MDL(matrix_profile, multivariate_time_series, sub_len, profile):
-    """mdl methods, compute the bits that are needed to store the 
+    """mdl methods, compute the bits that are needed to store the
     two subsequences selected for each dimension
 
     Parameters:
@@ -91,7 +92,7 @@ def MDL(matrix_profile, multivariate_time_series, sub_len, profile):
         multivariate_time_series: np.array (m, n_dim)
         sub_len: int
         profile: list of int (n_dim lists)
-    
+
     Return:
         compression value for each dimension computed with RDL
     """
