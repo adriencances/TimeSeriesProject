@@ -16,10 +16,25 @@ def plot_data(data):
 if __name__ == "__main__":
     mat = scipy.io.loadmat('toy_data.mat')
     sub_len = mat["sub_len"].item()
-    data = mat["data"].transpose(1,0)
-    matrix_profile, profile_index = mstamp(data, sub_len)
-    plot_data(data)
-    plot_data(matrix_profile)
-    plot_data(profile_index)
+    data = mat["data"]
+    matrix_profile, profile_index = mstamp(data.T, sub_len)
+
+    plot_motifs(data, sub_len, matrix_profile, dimensionality=2)
+    plt.savefig("images/toy_data_orig.png")
+
+    n = data.shape[0]
+    shifts = [-0.5, 0.8, -0.6]
+    scales = [0.5, 2, 0.8]
+    for k in range(3):
+        data[n//2:,k] += shifts[k]
+        data[n//2:,k] *= scales[k]
+
+    matrix_profile, profile_index = mstamp(data.T, sub_len)
+    plot_motifs(data, sub_len, matrix_profile, dimensionality=2)
+    plt.savefig("images/toy_data_shifted_scaled.png")
+
+    # plot_data(data)
+    # plot_data(matrix_profile)
+    # plot_data(profile_index)
 
 
