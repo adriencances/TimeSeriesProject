@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.io
 from mstamp_stamp import mstamp
+from demo import plot_motifs
 
 
 def plot_data(data):
