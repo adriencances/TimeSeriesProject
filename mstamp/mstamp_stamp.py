@@ -53,11 +53,8 @@ def mstamp(seq, sub_len, iter=None, random=False, return_dimension=False):
     sub_num = seq.shape[1] - sub_len + 1
     if iter is None:
         iter = sub_num
-    
+
     n_dim = seq.shape[0]
-    #print(seq_len)
-    #print(sub_num)
-    #print(type(sub_num))
     skip_loc = np.zeros(sub_num, dtype=bool)
     for i in range(sub_num):
         if not np.all(np.isfinite(seq[:, i:i + sub_len])):
