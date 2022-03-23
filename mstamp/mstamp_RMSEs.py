@@ -1,3 +1,6 @@
+"""
+@author: Adrien Cances and Aurelien Pion
+"""
 import numpy as np
 import time
 from mstamp_stamp import _EPS, _mass, _mass_pre

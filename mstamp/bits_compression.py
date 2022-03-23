@@ -1,3 +1,6 @@
+"""
+@author: Adrien Cances and Aurelien Pion
+"""
 import numpy as np
 
 def Dnorm(T):
