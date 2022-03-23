@@ -14,7 +14,7 @@ from mstamp_stomp import mstamp as mstamp_stomp
 from mstamp_stamp import mstamp as mstamp_stamp
 
 
-def plot_motifs(matrix_profile, dimensionality=1):
+def plot_motifs(data, sub_len, matrix_profile, dimensionality=1):
     motif_at = matrix_profile[dimensionality - 1, :].argsort()[:2]
 
     plt.figure(figsize=(14, 7))

@@ -27,7 +27,7 @@ def DL(T):
         DL score of T
     """
     m, dim = T.shape
-    return T.nbytes*8
+    return T.nbytes*8/dim
 
 def RDL(t_c, t_h):
     """compute RDL of t_c according to t_h
@@ -46,7 +46,7 @@ def RDL(t_c, t_h):
     m, dim = t_c.shape
     b = int(t_c.nbytes/(m*dim))*8
     # b = int(t_c.nbytes/(m*dim))
-    return gamma*(np.log2(m) + b)
+    return gamma*(np.log2(m) + b)/dim
 
 def bit(time_series, compressible_set_index, hypothesis_index, sub_len, unexplored_index=None):
     """Compute the bits required to store compressible_set_index according to hypothesis_index
